@@ -45,3 +45,6 @@ La interfaz es intuitiva y permite agregar, eliminar, buscar y recorrer nodos y 
 - La aplicación valida entradas para evitar errores de ejecución.
 - Los recorridos y rutas se muestran en **ListBox** y **Label**.
 - Diseñado para demostración y defensa técnica.
+
+## Anexos
+- Documento con explicación extendida: [Ver documento](https://docs.google.com/document/d/1I1rPQ3RFb9MsM-10CEqkTIHi6yAsxmDIdU0kFYGymgY/edit?usp=sharing)
