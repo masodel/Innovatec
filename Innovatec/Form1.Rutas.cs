@@ -227,6 +227,10 @@ namespace Innovatec
             Nodo nuevoNodo = new Nodo(tbRutas_AgregarEdificio.Text);
             grafo.AgregarNodo(nuevoNodo);
 
+
+            tbRutas_AgregarEdificio.Clear();
+            tbRutas_AgregarEdificio.Focus();
+
             CargarGrafo();
         }
 
@@ -265,6 +269,11 @@ namespace Innovatec
             nodo1.AgregarConexion(nodo2, distancia);
             nodo2.AgregarConexion(nodo1, distancia);
 
+            tbConexion_Edificio1.Clear();
+            tbConexion_Edificio2.Clear();
+            tbConexion_Distancia.Clear();
+            tbConexion_Edificio1.Focus();
+
             CargarGrafo();
         }
 
@@ -281,10 +290,14 @@ namespace Innovatec
 
                         var ruta = grafo.Dijkstra(inicio, destino);
 
-                        if (ruta == null)
-                            lblRutas_RutaRecomendada.Text = "No existe ruta.";
-                        else
-                            lblRutas_RutaRecomendada.Text = string.Join(" → ", ruta);
+                        if (ruta == null) lblRutas_RutaRecomendada.Text = "No existe ruta.";
+                        
+                        else lblRutas_RutaRecomendada.Text = string.Join(" → ", ruta);
+
+                        tbRuta_Edificio1.Clear();
+                        tbRuta_Edificio2.Clear();
+                        tbRuta_Edificio1.Focus();
+
                         break;
                     }
 
@@ -295,10 +308,13 @@ namespace Innovatec
 
                         var ruta = grafo.BFS(inicio, destino);
 
-                        if (ruta == null)
-                            lblRutas_RutaRecomendada.Text = "No existe ruta.";
-                        else
-                            lblRutas_RutaRecomendada.Text = string.Join(" → ", ruta);
+                        if (ruta == null) lblRutas_RutaRecomendada.Text = "No existe ruta.";
+
+                        else lblRutas_RutaRecomendada.Text = string.Join(" → ", ruta);
+
+                        tbRuta_Edificio1.Clear();
+                        tbRuta_Edificio2.Clear();
+                        tbRuta_Edificio1.Focus();
 
                         break;
                     }
@@ -320,6 +336,10 @@ namespace Innovatec
                 MessageBox.Show($"Nodo '{nombre}' eliminado.", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
                 MessageBox.Show($"No se encontró el nodo '{nombre}'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+            tbRutas_AgregarEdificio.Clear();
+            tbRutas_AgregarEdificio.Focus();
 
             CargarGrafo();
         }
@@ -347,6 +367,11 @@ namespace Innovatec
                 MessageBox.Show($"Conexión {desde} ↔ {hacia} eliminada.", "Eliminada", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
                 MessageBox.Show($"No existe conexión entre '{desde}' y '{hacia}', o algún nodo no existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+            tbConexion_Edificio1.Clear();
+            tbConexion_Edificio2.Clear();
+            tbConexion_Edificio1.Focus();
 
             CargarGrafo();
         }

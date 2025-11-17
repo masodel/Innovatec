@@ -145,6 +145,8 @@ namespace Innovatec
         private void brnJerarquia_Buscar_Click(object sender, EventArgs e)
         {
             BuscarRama(tbJerarquia_BuscarRama.Text);
+
+            tbJerarquia_BuscarRama.Clear();
         }
 
         private void btnJerarquia_Eliminar_Click(object sender, EventArgs e)
