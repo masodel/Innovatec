@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Innovatec");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Innovatec");
             this.Principal = new System.Windows.Forms.TabControl();
             this.PáginaPrincipal = new System.Windows.Forms.TabPage();
             this.Jerarquia = new System.Windows.Forms.TabPage();
@@ -63,6 +63,7 @@
             this.lblRuta_Edificio2 = new System.Windows.Forms.Label();
             this.lblRuta_Edificio1 = new System.Windows.Forms.Label();
             this.gbAgregar_Conexion = new System.Windows.Forms.GroupBox();
+            this.btnRutas_EliminarConexion = new System.Windows.Forms.Button();
             this.btnAgregarConexion = new System.Windows.Forms.Button();
             this.tbConexion_Distancia = new System.Windows.Forms.TextBox();
             this.lblConexionDistancia = new System.Windows.Forms.Label();
@@ -71,11 +72,10 @@
             this.tbConexion_Edificio1 = new System.Windows.Forms.TextBox();
             this.lblConexionEdificio1 = new System.Windows.Forms.Label();
             this.gbAgregarEdificio = new System.Windows.Forms.GroupBox();
+            this.btnRutas_EliminarEdificio = new System.Windows.Forms.Button();
             this.btnAgregarEdificio = new System.Windows.Forms.Button();
             this.tbRutas_AgregarEdificio = new System.Windows.Forms.TextBox();
             this.lblNombreEdificioAgregar = new System.Windows.Forms.Label();
-            this.btnRutas_EliminarEdificio = new System.Windows.Forms.Button();
-            this.btnRutas_EliminarConexion = new System.Windows.Forms.Button();
             this.Principal.SuspendLayout();
             this.Jerarquia.SuspendLayout();
             this.gbJerarquia_Contar.SuspendLayout();
@@ -166,7 +166,7 @@
             this.btnJerarquia_Recorrer.Location = new System.Drawing.Point(485, 30);
             this.btnJerarquia_Recorrer.Name = "btnJerarquia_Recorrer";
             this.btnJerarquia_Recorrer.Size = new System.Drawing.Size(122, 39);
-            this.btnJerarquia_Recorrer.TabIndex = 8;
+            this.btnJerarquia_Recorrer.TabIndex = 7;
             this.btnJerarquia_Recorrer.Text = "Recorrer";
             this.btnJerarquia_Recorrer.UseVisualStyleBackColor = true;
             this.btnJerarquia_Recorrer.Click += new System.EventHandler(this.btnJerarquia_Recorrer_Click);
@@ -190,7 +190,7 @@
             this.cbJerarquia_FormaRecorrer.Location = new System.Drawing.Point(264, 36);
             this.cbJerarquia_FormaRecorrer.Name = "cbJerarquia_FormaRecorrer";
             this.cbJerarquia_FormaRecorrer.Size = new System.Drawing.Size(215, 28);
-            this.cbJerarquia_FormaRecorrer.TabIndex = 1;
+            this.cbJerarquia_FormaRecorrer.TabIndex = 6;
             // 
             // lbJerarquia_Recorrer
             // 
@@ -199,7 +199,7 @@
             this.lbJerarquia_Recorrer.Location = new System.Drawing.Point(6, 89);
             this.lbJerarquia_Recorrer.Name = "lbJerarquia_Recorrer";
             this.lbJerarquia_Recorrer.Size = new System.Drawing.Size(619, 304);
-            this.lbJerarquia_Recorrer.TabIndex = 0;
+            this.lbJerarquia_Recorrer.TabIndex = 8;
             // 
             // gbJerarquia_Buscar
             // 
@@ -220,7 +220,7 @@
             this.btnJerarquia_Eliminar.Location = new System.Drawing.Point(522, 71);
             this.btnJerarquia_Eliminar.Name = "btnJerarquia_Eliminar";
             this.btnJerarquia_Eliminar.Size = new System.Drawing.Size(85, 39);
-            this.btnJerarquia_Eliminar.TabIndex = 7;
+            this.btnJerarquia_Eliminar.TabIndex = 5;
             this.btnJerarquia_Eliminar.Text = "Eliminar";
             this.btnJerarquia_Eliminar.UseVisualStyleBackColor = true;
             this.btnJerarquia_Eliminar.Click += new System.EventHandler(this.btnJerarquia_Eliminar_Click);
@@ -230,7 +230,7 @@
             this.brnJerarquia_Buscar.Location = new System.Drawing.Point(522, 26);
             this.brnJerarquia_Buscar.Name = "brnJerarquia_Buscar";
             this.brnJerarquia_Buscar.Size = new System.Drawing.Size(85, 39);
-            this.brnJerarquia_Buscar.TabIndex = 6;
+            this.brnJerarquia_Buscar.TabIndex = 4;
             this.brnJerarquia_Buscar.Text = "Buscar";
             this.brnJerarquia_Buscar.UseVisualStyleBackColor = true;
             this.brnJerarquia_Buscar.Click += new System.EventHandler(this.brnJerarquia_Buscar_Click);
@@ -240,7 +240,7 @@
             this.tbJerarquia_BuscarRama.Location = new System.Drawing.Point(149, 32);
             this.tbJerarquia_BuscarRama.Name = "tbJerarquia_BuscarRama";
             this.tbJerarquia_BuscarRama.Size = new System.Drawing.Size(367, 26);
-            this.tbJerarquia_BuscarRama.TabIndex = 5;
+            this.tbJerarquia_BuscarRama.TabIndex = 3;
             // 
             // lblJerarquia_Buscar
             // 
@@ -269,7 +269,7 @@
             this.btnAgregarRama.Location = new System.Drawing.Point(455, 32);
             this.btnAgregarRama.Name = "btnAgregarRama";
             this.btnAgregarRama.Size = new System.Drawing.Size(85, 39);
-            this.btnAgregarRama.TabIndex = 3;
+            this.btnAgregarRama.TabIndex = 2;
             this.btnAgregarRama.Text = "Agregar";
             this.btnAgregarRama.UseVisualStyleBackColor = true;
             this.btnAgregarRama.Click += new System.EventHandler(this.btnAgregarRama_Click);
@@ -278,12 +278,12 @@
             // 
             this.tvJerarquia.Location = new System.Drawing.Point(34, 91);
             this.tvJerarquia.Name = "tvJerarquia";
-            treeNode3.Name = "Innovatec";
-            treeNode3.Text = "Innovatec";
+            treeNode2.Name = "Innovatec";
+            treeNode2.Text = "Innovatec";
             this.tvJerarquia.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode2});
             this.tvJerarquia.Size = new System.Drawing.Size(506, 515);
-            this.tvJerarquia.TabIndex = 2;
+            this.tvJerarquia.TabIndex = 0;
             // 
             // tbJerarquia_AgregarRama
             // 
@@ -346,9 +346,9 @@
             // gbGrafo
             // 
             this.gbGrafo.Controls.Add(this.lblRutas);
-            this.gbGrafo.Location = new System.Drawing.Point(6, 25);
+            this.gbGrafo.Location = new System.Drawing.Point(6, 16);
             this.gbGrafo.Name = "gbGrafo";
-            this.gbGrafo.Size = new System.Drawing.Size(738, 461);
+            this.gbGrafo.Size = new System.Drawing.Size(738, 470);
             this.gbGrafo.TabIndex = 1;
             this.gbGrafo.TabStop = false;
             this.gbGrafo.Text = "Grafo";
@@ -384,7 +384,7 @@
             this.btnBuscar.Location = new System.Drawing.Point(325, 87);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(103, 28);
-            this.btnBuscar.TabIndex = 3;
+            this.btnBuscar.TabIndex = 12;
             this.btnBuscar.Text = "Buscar por:";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
@@ -399,21 +399,21 @@
             this.cbRutas_BuscarPor.Location = new System.Drawing.Point(325, 121);
             this.cbRutas_BuscarPor.Name = "cbRutas_BuscarPor";
             this.cbRutas_BuscarPor.Size = new System.Drawing.Size(103, 28);
-            this.cbRutas_BuscarPor.TabIndex = 3;
+            this.cbRutas_BuscarPor.TabIndex = 11;
             // 
             // tbRuta_Edificio2
             // 
             this.tbRuta_Edificio2.Location = new System.Drawing.Point(16, 123);
             this.tbRuta_Edificio2.Name = "tbRuta_Edificio2";
             this.tbRuta_Edificio2.Size = new System.Drawing.Size(303, 26);
-            this.tbRuta_Edificio2.TabIndex = 12;
+            this.tbRuta_Edificio2.TabIndex = 10;
             // 
             // tbRuta_Edificio1
             // 
             this.tbRuta_Edificio1.Location = new System.Drawing.Point(16, 56);
             this.tbRuta_Edificio1.Name = "tbRuta_Edificio1";
             this.tbRuta_Edificio1.Size = new System.Drawing.Size(303, 26);
-            this.tbRuta_Edificio1.TabIndex = 10;
+            this.tbRuta_Edificio1.TabIndex = 9;
             // 
             // lblRuta_Edificio2
             // 
@@ -450,13 +450,24 @@
             this.gbAgregar_Conexion.TabStop = false;
             this.gbAgregar_Conexion.Text = "Agregar o Eliminar Conexión";
             // 
+            // btnRutas_EliminarConexion
+            // 
+            this.btnRutas_EliminarConexion.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnRutas_EliminarConexion.Location = new System.Drawing.Point(117, 242);
+            this.btnRutas_EliminarConexion.Name = "btnRutas_EliminarConexion";
+            this.btnRutas_EliminarConexion.Size = new System.Drawing.Size(98, 31);
+            this.btnRutas_EliminarConexion.TabIndex = 8;
+            this.btnRutas_EliminarConexion.Text = "Eliminar";
+            this.btnRutas_EliminarConexion.UseVisualStyleBackColor = true;
+            this.btnRutas_EliminarConexion.Click += new System.EventHandler(this.btnRutas_EliminarConexion_Click);
+            // 
             // btnAgregarConexion
             // 
             this.btnAgregarConexion.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnAgregarConexion.Location = new System.Drawing.Point(221, 242);
             this.btnAgregarConexion.Name = "btnAgregarConexion";
             this.btnAgregarConexion.Size = new System.Drawing.Size(98, 31);
-            this.btnAgregarConexion.TabIndex = 3;
+            this.btnAgregarConexion.TabIndex = 7;
             this.btnAgregarConexion.Text = "Agregar";
             this.btnAgregarConexion.UseVisualStyleBackColor = true;
             this.btnAgregarConexion.Click += new System.EventHandler(this.btnAgregarConexion_Click);
@@ -466,7 +477,7 @@
             this.tbConexion_Distancia.Location = new System.Drawing.Point(16, 196);
             this.tbConexion_Distancia.Name = "tbConexion_Distancia";
             this.tbConexion_Distancia.Size = new System.Drawing.Size(303, 26);
-            this.tbConexion_Distancia.TabIndex = 8;
+            this.tbConexion_Distancia.TabIndex = 6;
             // 
             // lblConexionDistancia
             // 
@@ -482,7 +493,7 @@
             this.tbConexion_Edificio2.Location = new System.Drawing.Point(16, 127);
             this.tbConexion_Edificio2.Name = "tbConexion_Edificio2";
             this.tbConexion_Edificio2.Size = new System.Drawing.Size(303, 26);
-            this.tbConexion_Edificio2.TabIndex = 6;
+            this.tbConexion_Edificio2.TabIndex = 5;
             // 
             // lblConexionEdificio2
             // 
@@ -522,12 +533,22 @@
             this.gbAgregarEdificio.TabStop = false;
             this.gbAgregarEdificio.Text = "Agregar o Eliminar Edificio";
             // 
+            // btnRutas_EliminarEdificio
+            // 
+            this.btnRutas_EliminarEdificio.Location = new System.Drawing.Point(329, 65);
+            this.btnRutas_EliminarEdificio.Name = "btnRutas_EliminarEdificio";
+            this.btnRutas_EliminarEdificio.Size = new System.Drawing.Size(103, 35);
+            this.btnRutas_EliminarEdificio.TabIndex = 2;
+            this.btnRutas_EliminarEdificio.Text = "Eliminar";
+            this.btnRutas_EliminarEdificio.UseVisualStyleBackColor = true;
+            this.btnRutas_EliminarEdificio.Click += new System.EventHandler(this.btnRutas_EliminarEdificio_Click);
+            // 
             // btnAgregarEdificio
             // 
             this.btnAgregarEdificio.Location = new System.Drawing.Point(329, 24);
             this.btnAgregarEdificio.Name = "btnAgregarEdificio";
             this.btnAgregarEdificio.Size = new System.Drawing.Size(103, 35);
-            this.btnAgregarEdificio.TabIndex = 2;
+            this.btnAgregarEdificio.TabIndex = 1;
             this.btnAgregarEdificio.Text = "Agregar";
             this.btnAgregarEdificio.UseVisualStyleBackColor = true;
             this.btnAgregarEdificio.Click += new System.EventHandler(this.btnAgregarEdificio_Click);
@@ -537,7 +558,7 @@
             this.tbRutas_AgregarEdificio.Location = new System.Drawing.Point(20, 54);
             this.tbRutas_AgregarEdificio.Name = "tbRutas_AgregarEdificio";
             this.tbRutas_AgregarEdificio.Size = new System.Drawing.Size(303, 26);
-            this.tbRutas_AgregarEdificio.TabIndex = 1;
+            this.tbRutas_AgregarEdificio.TabIndex = 0;
             // 
             // lblNombreEdificioAgregar
             // 
@@ -547,27 +568,6 @@
             this.lblNombreEdificioAgregar.Size = new System.Drawing.Size(145, 20);
             this.lblNombreEdificioAgregar.TabIndex = 0;
             this.lblNombreEdificioAgregar.Text = "Nombre del Edificio";
-            // 
-            // btnRutas_EliminarEdificio
-            // 
-            this.btnRutas_EliminarEdificio.Location = new System.Drawing.Point(329, 65);
-            this.btnRutas_EliminarEdificio.Name = "btnRutas_EliminarEdificio";
-            this.btnRutas_EliminarEdificio.Size = new System.Drawing.Size(103, 35);
-            this.btnRutas_EliminarEdificio.TabIndex = 3;
-            this.btnRutas_EliminarEdificio.Text = "Eliminar";
-            this.btnRutas_EliminarEdificio.UseVisualStyleBackColor = true;
-            this.btnRutas_EliminarEdificio.Click += new System.EventHandler(this.btnRutas_EliminarEdificio_Click);
-            // 
-            // btnRutas_EliminarConexion
-            // 
-            this.btnRutas_EliminarConexion.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRutas_EliminarConexion.Location = new System.Drawing.Point(117, 242);
-            this.btnRutas_EliminarConexion.Name = "btnRutas_EliminarConexion";
-            this.btnRutas_EliminarConexion.Size = new System.Drawing.Size(98, 31);
-            this.btnRutas_EliminarConexion.TabIndex = 9;
-            this.btnRutas_EliminarConexion.Text = "Eliminar";
-            this.btnRutas_EliminarConexion.UseVisualStyleBackColor = true;
-            this.btnRutas_EliminarConexion.Click += new System.EventHandler(this.btnRutas_EliminarConexion_Click);
             // 
             // FrmPrincipal
             // 
