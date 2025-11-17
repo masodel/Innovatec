@@ -28,12 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Innovatec");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Innovatec");
             this.Principal = new System.Windows.Forms.TabControl();
             this.PáginaPrincipal = new System.Windows.Forms.TabPage();
             this.Jerarquia = new System.Windows.Forms.TabPage();
             this.gbJerarquia_Contar = new System.Windows.Forms.GroupBox();
+            this.lblJerarquia_ContarRamas = new System.Windows.Forms.Label();
             this.gbJerarquia_Recorrer = new System.Windows.Forms.GroupBox();
+            this.btnJerarquia_Recorrer = new System.Windows.Forms.Button();
+            this.lblJerarquia_Recorrer = new System.Windows.Forms.Label();
+            this.cbJerarquia_FormaRecorrer = new System.Windows.Forms.ComboBox();
+            this.lbJerarquia_Recorrer = new System.Windows.Forms.ListBox();
             this.gbJerarquia_Buscar = new System.Windows.Forms.GroupBox();
             this.btnJerarquia_Eliminar = new System.Windows.Forms.Button();
             this.brnJerarquia_Buscar = new System.Windows.Forms.Button();
@@ -51,7 +56,7 @@
             this.lblRutas = new System.Windows.Forms.Label();
             this.gbBuscarRuta = new System.Windows.Forms.GroupBox();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbRutas_BuscarPor = new System.Windows.Forms.ComboBox();
             this.tbRuta_Edificio2 = new System.Windows.Forms.TextBox();
             this.tbRuta_Edificio1 = new System.Windows.Forms.TextBox();
             this.lblRuta_Edificio2 = new System.Windows.Forms.Label();
@@ -70,6 +75,8 @@
             this.lblNombreEdificioAgregar = new System.Windows.Forms.Label();
             this.Principal.SuspendLayout();
             this.Jerarquia.SuspendLayout();
+            this.gbJerarquia_Contar.SuspendLayout();
+            this.gbJerarquia_Recorrer.SuspendLayout();
             this.gbJerarquia_Buscar.SuspendLayout();
             this.gbJerarquia_AgregarRama.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -120,21 +127,75 @@
             // 
             // gbJerarquia_Contar
             // 
+            this.gbJerarquia_Contar.Controls.Add(this.lblJerarquia_ContarRamas);
             this.gbJerarquia_Contar.Location = new System.Drawing.Point(595, 134);
             this.gbJerarquia_Contar.Name = "gbJerarquia_Contar";
-            this.gbJerarquia_Contar.Size = new System.Drawing.Size(631, 132);
+            this.gbJerarquia_Contar.Size = new System.Drawing.Size(631, 75);
             this.gbJerarquia_Contar.TabIndex = 3;
             this.gbJerarquia_Contar.TabStop = false;
             this.gbJerarquia_Contar.Text = "Contar";
             // 
+            // lblJerarquia_ContarRamas
+            // 
+            this.lblJerarquia_ContarRamas.AutoSize = true;
+            this.lblJerarquia_ContarRamas.Location = new System.Drawing.Point(33, 32);
+            this.lblJerarquia_ContarRamas.Name = "lblJerarquia_ContarRamas";
+            this.lblJerarquia_ContarRamas.Size = new System.Drawing.Size(152, 20);
+            this.lblJerarquia_ContarRamas.TabIndex = 8;
+            this.lblJerarquia_ContarRamas.Text = "Número de ramas: 1";
+            // 
             // gbJerarquia_Recorrer
             // 
-            this.gbJerarquia_Recorrer.Location = new System.Drawing.Point(595, 272);
+            this.gbJerarquia_Recorrer.Controls.Add(this.btnJerarquia_Recorrer);
+            this.gbJerarquia_Recorrer.Controls.Add(this.lblJerarquia_Recorrer);
+            this.gbJerarquia_Recorrer.Controls.Add(this.cbJerarquia_FormaRecorrer);
+            this.gbJerarquia_Recorrer.Controls.Add(this.lbJerarquia_Recorrer);
+            this.gbJerarquia_Recorrer.Location = new System.Drawing.Point(595, 215);
             this.gbJerarquia_Recorrer.Name = "gbJerarquia_Recorrer";
-            this.gbJerarquia_Recorrer.Size = new System.Drawing.Size(631, 346);
+            this.gbJerarquia_Recorrer.Size = new System.Drawing.Size(631, 403);
             this.gbJerarquia_Recorrer.TabIndex = 2;
             this.gbJerarquia_Recorrer.TabStop = false;
             this.gbJerarquia_Recorrer.Text = "Recorrer";
+            // 
+            // btnJerarquia_Recorrer
+            // 
+            this.btnJerarquia_Recorrer.Location = new System.Drawing.Point(485, 30);
+            this.btnJerarquia_Recorrer.Name = "btnJerarquia_Recorrer";
+            this.btnJerarquia_Recorrer.Size = new System.Drawing.Size(122, 39);
+            this.btnJerarquia_Recorrer.TabIndex = 8;
+            this.btnJerarquia_Recorrer.Text = "Recorrer";
+            this.btnJerarquia_Recorrer.UseVisualStyleBackColor = true;
+            this.btnJerarquia_Recorrer.Click += new System.EventHandler(this.btnJerarquia_Recorrer_Click);
+            // 
+            // lblJerarquia_Recorrer
+            // 
+            this.lblJerarquia_Recorrer.AutoSize = true;
+            this.lblJerarquia_Recorrer.Location = new System.Drawing.Point(33, 39);
+            this.lblJerarquia_Recorrer.Name = "lblJerarquia_Recorrer";
+            this.lblJerarquia_Recorrer.Size = new System.Drawing.Size(225, 20);
+            this.lblJerarquia_Recorrer.TabIndex = 8;
+            this.lblJerarquia_Recorrer.Text = "Selecione la forma de recorrer:";
+            // 
+            // cbJerarquia_FormaRecorrer
+            // 
+            this.cbJerarquia_FormaRecorrer.FormattingEnabled = true;
+            this.cbJerarquia_FormaRecorrer.Items.AddRange(new object[] {
+            "Pre-Orden",
+            "Post-Orden",
+            "Por Niveles"});
+            this.cbJerarquia_FormaRecorrer.Location = new System.Drawing.Point(264, 36);
+            this.cbJerarquia_FormaRecorrer.Name = "cbJerarquia_FormaRecorrer";
+            this.cbJerarquia_FormaRecorrer.Size = new System.Drawing.Size(215, 28);
+            this.cbJerarquia_FormaRecorrer.TabIndex = 1;
+            // 
+            // lbJerarquia_Recorrer
+            // 
+            this.lbJerarquia_Recorrer.FormattingEnabled = true;
+            this.lbJerarquia_Recorrer.ItemHeight = 20;
+            this.lbJerarquia_Recorrer.Location = new System.Drawing.Point(6, 89);
+            this.lbJerarquia_Recorrer.Name = "lbJerarquia_Recorrer";
+            this.lbJerarquia_Recorrer.Size = new System.Drawing.Size(619, 304);
+            this.lbJerarquia_Recorrer.TabIndex = 0;
             // 
             // gbJerarquia_Buscar
             // 
@@ -151,7 +212,6 @@
             // 
             // btnJerarquia_Eliminar
             // 
-            this.btnJerarquia_Eliminar.Enabled = false;
             this.btnJerarquia_Eliminar.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnJerarquia_Eliminar.Location = new System.Drawing.Point(522, 71);
             this.btnJerarquia_Eliminar.Name = "btnJerarquia_Eliminar";
@@ -214,10 +274,10 @@
             // 
             this.tvJerarquia.Location = new System.Drawing.Point(34, 91);
             this.tvJerarquia.Name = "tvJerarquia";
-            treeNode6.Name = "Innovatec";
-            treeNode6.Text = "Innovatec";
+            treeNode5.Name = "Innovatec";
+            treeNode5.Text = "Innovatec";
             this.tvJerarquia.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode6});
+            treeNode5});
             this.tvJerarquia.Size = new System.Drawing.Size(506, 515);
             this.tvJerarquia.TabIndex = 2;
             // 
@@ -293,7 +353,7 @@
             // gbBuscarRuta
             // 
             this.gbBuscarRuta.Controls.Add(this.btnBuscar);
-            this.gbBuscarRuta.Controls.Add(this.comboBox1);
+            this.gbBuscarRuta.Controls.Add(this.cbRutas_BuscarPor);
             this.gbBuscarRuta.Controls.Add(this.tbRuta_Edificio2);
             this.gbBuscarRuta.Controls.Add(this.tbRuta_Edificio1);
             this.gbBuscarRuta.Controls.Add(this.lblRuta_Edificio2);
@@ -307,7 +367,7 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.btnBuscar.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnBuscar.Location = new System.Drawing.Point(325, 87);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(103, 28);
@@ -315,17 +375,17 @@
             this.btnBuscar.Text = "Buscar por:";
             this.btnBuscar.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // cbRutas_BuscarPor
             // 
-            this.comboBox1.AllowDrop = true;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbRutas_BuscarPor.AllowDrop = true;
+            this.cbRutas_BuscarPor.FormattingEnabled = true;
+            this.cbRutas_BuscarPor.Items.AddRange(new object[] {
             "Distancia",
             "Paradas"});
-            this.comboBox1.Location = new System.Drawing.Point(325, 121);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(103, 28);
-            this.comboBox1.TabIndex = 3;
+            this.cbRutas_BuscarPor.Location = new System.Drawing.Point(325, 121);
+            this.cbRutas_BuscarPor.Name = "cbRutas_BuscarPor";
+            this.cbRutas_BuscarPor.Size = new System.Drawing.Size(103, 28);
+            this.cbRutas_BuscarPor.TabIndex = 3;
             // 
             // tbRuta_Edificio2
             // 
@@ -377,7 +437,8 @@
             // 
             // btnAgregarConexion
             // 
-            this.btnAgregarConexion.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.btnAgregarConexion.Enabled = false;
+            this.btnAgregarConexion.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnAgregarConexion.Location = new System.Drawing.Point(155, 242);
             this.btnAgregarConexion.Name = "btnAgregarConexion";
             this.btnAgregarConexion.Size = new System.Drawing.Size(164, 31);
@@ -481,6 +542,10 @@
             this.Text = "Innovatec";
             this.Principal.ResumeLayout(false);
             this.Jerarquia.ResumeLayout(false);
+            this.gbJerarquia_Contar.ResumeLayout(false);
+            this.gbJerarquia_Contar.PerformLayout();
+            this.gbJerarquia_Recorrer.ResumeLayout(false);
+            this.gbJerarquia_Recorrer.PerformLayout();
             this.gbJerarquia_Buscar.ResumeLayout(false);
             this.gbJerarquia_Buscar.PerformLayout();
             this.gbJerarquia_AgregarRama.ResumeLayout(false);
@@ -526,7 +591,7 @@
         private System.Windows.Forms.TextBox tbRuta_Edificio1;
         private System.Windows.Forms.Label lblRuta_Edificio2;
         private System.Windows.Forms.Label lblRuta_Edificio1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbRutas_BuscarPor;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.GroupBox gbEdificios_Rutas;
         private System.Windows.Forms.Label lblRutas;
@@ -540,6 +605,11 @@
         private System.Windows.Forms.TextBox tbJerarquia_BuscarRama;
         private System.Windows.Forms.Label lblJerarquia_Buscar;
         private System.Windows.Forms.Button btnJerarquia_Eliminar;
+        private System.Windows.Forms.Label lblJerarquia_ContarRamas;
+        private System.Windows.Forms.ComboBox cbJerarquia_FormaRecorrer;
+        private System.Windows.Forms.ListBox lbJerarquia_Recorrer;
+        private System.Windows.Forms.Button btnJerarquia_Recorrer;
+        private System.Windows.Forms.Label lblJerarquia_Recorrer;
     }
 }
 
