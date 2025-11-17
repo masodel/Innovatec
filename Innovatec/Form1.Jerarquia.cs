@@ -17,7 +17,7 @@ namespace Innovatec
             tvJerarquia.SelectedNode.Nodes.Add(nombreRama);
         }
 
-        public Boolean BuscarRama(string texto)
+        public void BuscarRama(string texto)
         {
             TreeNode Buscar(TreeNodeCollection nodos, string t)
             {
@@ -38,7 +38,7 @@ namespace Innovatec
             if (nodo == null)
             {
                 MessageBox.Show("No encontrado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
+                return;
             }
 
             if (UltimoNodo != null && UltimoNodo != nodo) UltimoNodo.BackColor = Color.White;
@@ -49,7 +49,7 @@ namespace Innovatec
             nodo.BackColor = Color.Yellow;
             nodo.EnsureVisible();
 
-            return true;
+            return;
         }
 
         public void EliminarRama()
