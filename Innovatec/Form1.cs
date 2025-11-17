@@ -32,9 +32,9 @@ namespace Innovatec
                 Conexiones = new Dictionary<Nodo, int>();
             }
 
-            public void AgregarConexion(Nodo nodo, int peso)
+            public void AgregarConexion(Nodo destino, int distancia)
             {
-                Conexiones[nodo] = peso;
+                Conexiones[destino] = distancia;
             }
         }
 
@@ -45,6 +45,167 @@ namespace Innovatec
             public void AgregarNodo(Nodo nodo)
             {
                 Nodos.Add(nodo);
+            }
+
+            public bool EliminarNodo(string nombre)
+            {
+                if (string.IsNullOrWhiteSpace(nombre)) return false;
+
+                Nodo nodo = Nodos.FirstOrDefault(n => string.Equals(n.Nombre, nombre.Trim(), StringComparison.OrdinalIgnoreCase));
+                if (nodo == null) return false;
+
+                // eliminar todas las conexiones hacia este nodo
+                foreach (var n in Nodos)
+                {
+                    if (n.Conexiones.ContainsKey(nodo))
+                        n.Conexiones.Remove(nodo);
+                }
+
+                Nodos.Remove(nodo);
+                return true;
+            }
+
+            public bool EliminarConexion(string desdeNombre, string haciaNombre)
+            {
+                if (string.IsNullOrWhiteSpace(desdeNombre) || string.IsNullOrWhiteSpace(haciaNombre)) return false;
+
+                Nodo desde = Nodos.FirstOrDefault(n => string.Equals(n.Nombre, desdeNombre.Trim(), StringComparison.OrdinalIgnoreCase));
+                Nodo hacia = Nodos.FirstOrDefault(n => string.Equals(n.Nombre, haciaNombre.Trim(), StringComparison.OrdinalIgnoreCase));
+
+                if (desde == null || hacia == null) return false;
+
+                bool removed = false;
+
+                // Intentamos eliminar en ambos sentidos (grafo no dirigido)
+                if (desde.Conexiones.ContainsKey(hacia))
+                {
+                    desde.Conexiones.Remove(hacia);
+                    removed = true;
+                }
+
+                if (hacia.Conexiones.ContainsKey(desde))
+                {
+                    hacia.Conexiones.Remove(desde);
+                    removed = true;
+                }
+
+                return removed;
+            }
+
+            public List<string> BFS(string inicio, string destino)
+            {
+                var start = Nodos.FirstOrDefault(n => n.Nombre == inicio);
+                var end = Nodos.FirstOrDefault(n => n.Nombre == destino);
+
+                if (start == null || end == null)
+                    return null;
+
+                Queue<Nodo> cola = new Queue<Nodo>();
+                HashSet<Nodo> visitados = new HashSet<Nodo>();
+                Dictionary<Nodo, Nodo> padre = new Dictionary<Nodo, Nodo>();
+
+                cola.Enqueue(start);
+                visitados.Add(start);
+
+                while (cola.Count > 0)
+                {
+                    Nodo actual = cola.Dequeue();
+
+                    if (actual == end)
+                        break;
+
+                    foreach (var vecino in actual.Conexiones.Keys)
+                    {
+                        if (!visitados.Contains(vecino))
+                        {
+                            visitados.Add(vecino);
+                            padre[vecino] = actual;
+                            cola.Enqueue(vecino);
+                        }
+                    }
+                }
+
+                if (!padre.ContainsKey(end))
+                    return null;
+
+                List<string> ruta = new List<string>();
+                Nodo temp = end;
+
+                while (temp != start)
+                {
+                    ruta.Add(temp.Nombre);
+                    temp = padre[temp];
+                }
+
+                ruta.Add(start.Nombre);
+                ruta.Reverse();
+                return ruta;
+            }
+
+            public List<string> Dijkstra(string inicio, string destino)
+            {
+                var start = Nodos.FirstOrDefault(n => n.Nombre == inicio);
+                var end = Nodos.FirstOrDefault(n => n.Nombre == destino);
+
+                if (start == null || end == null)
+                    return null;
+
+                Dictionary<Nodo, int> dist = new Dictionary<Nodo, int>();
+                Dictionary<Nodo, Nodo> padre = new Dictionary<Nodo, Nodo>();
+                HashSet<Nodo> visitados = new HashSet<Nodo>();
+
+                foreach (var nodo in Nodos)
+                    dist[nodo] = int.MaxValue;
+
+                dist[start] = 0;
+
+                while (visitados.Count < Nodos.Count)
+                {
+                    Nodo actual = null;
+                    int menor = int.MaxValue;
+
+                    foreach (var n in Nodos)
+                    {
+                        if (!visitados.Contains(n) && dist[n] < menor)
+                        {
+                            menor = dist[n];
+                            actual = n;
+                        }
+                    }
+
+                    if (actual == null)
+                        break;
+
+                    visitados.Add(actual);
+
+                    foreach (var vecino in actual.Conexiones.Keys)
+                    {
+                        int peso = actual.Conexiones[vecino];
+                        int nuevaDist = dist[actual] + peso;
+
+                        if (nuevaDist < dist[vecino])
+                        {
+                            dist[vecino] = nuevaDist;
+                            padre[vecino] = actual;
+                        }
+                    }
+                }
+
+                if (!padre.ContainsKey(end))
+                    return null;
+
+                List<string> ruta = new List<string>();
+                Nodo temp = end;
+
+                while (temp != start)
+                {
+                    ruta.Add(temp.Nombre);
+                    temp = padre[temp];
+                }
+
+                ruta.Add(start.Nombre);
+                ruta.Reverse();
+                return ruta;
             }
         }
 
@@ -67,14 +228,6 @@ namespace Innovatec
             }
         }
 
-        private void BFS()
-        {
-        }
-
-        private void Dijkstra()
-        {
-        }
-
         private void btnAgregarEdificio_Click(object sender, EventArgs e)
         {
             if (tbRutas_AgregarEdificio.Text == "")
@@ -82,7 +235,7 @@ namespace Innovatec
                 MessageBox.Show("Por favor, ingrese el nombre del edificio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
+
             Nodo nuevoNodo = new Nodo(tbRutas_AgregarEdificio.Text);
             grafo.AgregarNodo(nuevoNodo);
 
@@ -123,7 +276,7 @@ namespace Innovatec
 
             nodo1.AgregarConexion(nodo2, distancia);
             nodo2.AgregarConexion(nodo1, distancia);
-                
+
             CargarGrafo();
         }
 
@@ -135,14 +288,79 @@ namespace Innovatec
             {
                 case 0:
                     {
+                        string inicio = tbRuta_Edificio1.Text;
+                        string destino = tbRuta_Edificio2.Text;
+
+                        var ruta = grafo.Dijkstra(inicio, destino);
+
+                        if (ruta == null)
+                            lblRutas_RutaRecomendada.Text = "No existe ruta.";
+                        else
+                            lblRutas_RutaRecomendada.Text = string.Join(" → ", ruta);
                         break;
                     }
 
                 case 1:
                     {
+                        string inicio = tbRuta_Edificio1.Text;
+                        string destino = tbRuta_Edificio2.Text;
+
+                        var ruta = grafo.BFS(inicio, destino);
+
+                        if (ruta == null)
+                            lblRutas_RutaRecomendada.Text = "No existe ruta.";
+                        else
+                            lblRutas_RutaRecomendada.Text = string.Join(" → ", ruta);
+
                         break;
                     }
             }
+        }
+
+        private void btnRutas_EliminarEdificio_Click(object sender, EventArgs e)
+        {
+            string nombre = tbRutas_AgregarEdificio.Text?.Trim();
+
+            if (string.IsNullOrEmpty(nombre))
+            {
+                MessageBox.Show("Escriba el nombre del edificio a eliminar.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            bool ok = grafo.EliminarNodo(nombre);
+            if (ok)
+                MessageBox.Show($"Nodo '{nombre}' eliminado.", "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show($"No se encontró el nodo '{nombre}'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            CargarGrafo();
+        }
+
+        private void btnRutas_EliminarConexion_Click(object sender, EventArgs e)
+        {
+            string desde = tbConexion_Edificio1.Text?.Trim();
+            string hacia = tbConexion_Edificio2.Text?.Trim();
+
+            if (string.IsNullOrEmpty(desde) || string.IsNullOrEmpty(hacia))
+            {
+                MessageBox.Show("Complete ambos nombres (Desde y Hacia).", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.Equals(desde, hacia, StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("No puede eliminar una conexión hacia sí mismo.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            bool ok = grafo.EliminarConexion(desde, hacia);
+
+            if (ok)
+                MessageBox.Show($"Conexión {desde} ↔ {hacia} eliminada.", "Eliminada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show($"No existe conexión entre '{desde}' y '{hacia}', o algún nodo no existe.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            CargarGrafo();
         }
     }
 }
